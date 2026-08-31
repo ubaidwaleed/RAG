@@ -9,6 +9,8 @@ import {
   type KeyboardEvent,
 } from "react";
 
+import { queryAgent } from "@/lib/api";
+
 type Message = {
   role: "user" | "assistant";
   content: string;
@@ -33,15 +35,7 @@ export default function Home() {
     setError("");
 
     try {
-      const res = await fetch("/api/query", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query }),
-      });
-
-      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
-
-      const data = await res.json();
+      const data = await queryAgent(query);
       setMessages((prev) => [...prev, { role: "assistant", content: data.answer }]);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
