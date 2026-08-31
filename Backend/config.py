@@ -21,6 +21,7 @@ class Settings(BaseSettings):
     chunk_size: int = 1000
     chunk_overlap: int = 200
     top_k: int = 5
+    max_upload_size_mb: int = 10
 
 
 settings = Settings()
