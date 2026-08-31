@@ -35,7 +35,12 @@ def health() -> dict[str, str]:
 
 @app.post("/query", response_model=QueryResponse)
 def query(request: QueryRequest) -> QueryResponse:
-    answer = answer_query(request.query, namespace=request.document_id or "")
+    if not request.document_id:
+        return QueryResponse(
+            answer="No document attached. Please upload a document before asking a question."
+        )
+
+    answer = answer_query(request.query, namespace=request.document_id)
     return QueryResponse(answer=answer)
 
 
