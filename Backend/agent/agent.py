@@ -1,12 +1,14 @@
-"""Basic RAG agent: embed the query, retrieve context from Pinecone, ask Gemini."""
+"""Basic RAG agent: embed the query with Gemini, retrieve context from Pinecone, ask Groq."""
 
 from google import genai
 from google.genai import types
+from groq import Groq
 from pinecone import Pinecone
 
 from config import settings
 
 _client = genai.Client(api_key=settings.gemini_api_key)
+_groq_client = Groq(api_key=settings.groq_api_key)
 _pc = Pinecone(api_key=settings.pinecone_api_key)
 _index = _pc.Index(settings.pinecone_index_name)
 
@@ -36,5 +38,8 @@ def answer_query(query: str) -> str:
     context = "\n\n".join(chunks) if chunks else "No relevant context found."
 
     prompt = PROMPT_TEMPLATE.format(context=context, question=query)
-    response = _client.models.generate_content(model=settings.gemini_llm_model, contents=prompt)
-    return response.text
+    completion = _groq_client.chat.completions.create(
+        model=settings.groq_llm_model,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    return completion.choices[0].message.content

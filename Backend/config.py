@@ -9,9 +9,11 @@ class Settings(BaseSettings):
     log_level: str = "INFO"
 
     gemini_api_key: str
-    gemini_llm_model: str = "gemini-3.6-flash"
     gemini_embedding_model: str = "gemini-embedding-001"
     embedding_dimension: int = 768
+
+    groq_api_key: str
+    groq_llm_model: str = "openai/gpt-oss-120b"
 
     pinecone_api_key: str
     pinecone_index_name: str = "rag-agent-index"
