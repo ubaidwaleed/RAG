@@ -1,0 +1,12 @@
+The Eiffel Tower is a wrought-iron lattice tower located on the Champ de Mars in Paris, France.
+It was designed by the engineer Gustave Eiffel and completed in 1889 as the entrance arch for
+the 1889 World's Fair. At the time of its completion, it was the tallest man-made structure in
+the world, a title it held for 41 years.
+
+The tower is 330 metres tall and consists of three levels open to visitors. Restaurants are
+located on the first and second levels. The top level's upper platform is the highest observation
+deck accessible to the public in the European Union.
+
+The Eiffel Tower is the most visited monument with an entrance fee in the world, with millions of
+people ascending it every year. It is one of the most recognizable structures in the world and has
+become a global cultural icon of France.
